@@ -112,7 +112,7 @@ function time(shu, sums, tie, sum, tis) { //倒计时
             $.ajax({
                 type:"POST", //请求方式
                 url:"http://lv.cn/index.php", //请求的url地址
-                data:{"id":"12"}, //参数值
+                data:{"id":sums}, //参数值
                 dataType:'json',
                 crossDomain: true,    //一定要加
                 success:function(result){
