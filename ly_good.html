@@ -2,8 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>html简单易懂的随机抽奖-jq22.com</title>
+<title>湖南绿茵科技环保</title>
 <script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
 <style>
 .content {
 	width:456px;
@@ -33,6 +34,8 @@
 	padding:5px 20px;
 	margin-top:20px;
 	cursor:pointer;
+    width: 400px;
+    height: 100px;
 }
 .choujiang:hover {
 	background-color:red;
@@ -73,6 +76,7 @@ $(document).ready(function() {
 
 function time(shu, sums, tie, sum, tis) { //倒计时
     var tie = tie + tis //滚动速度
+
     setTimeout(function() {
         if (shu <= sums) {
             $('.kuai').css({
@@ -91,6 +95,21 @@ function time(shu, sums, tie, sum, tis) { //倒计时
             text(shu, sums, tie, sum, tis)
         } else {
             $('.choujiang').attr("disabled", false); //抽奖完毕,按钮重新进入可编辑状态
+         //   alert(sums);
+            $.ajax({
+                type:"POST", //请求方式
+                url:"http://lv.cn/index.php", //请求的url地址
+                data:{"id":"12"}, //参数值
+                dataType:'json',
+                crossDomain: true,    //一定要加
+                success:function(result){
+                    console.log(result);
+                },
+                error:function(result){
+                    console.log(result);
+                }
+
+            });
         }
     }, tie);
 }
