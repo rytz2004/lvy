@@ -9,7 +9,19 @@
 body{
     background-color: #F0F8FF;
 }
+.prompt{
+    margin:0 auto;border:1px solid #000;width:300px;height:100px;margin-bottom: 60px;
+}
+
 .title_1{
+    margin:0 auto;
+    margin-bottom: 20px;
+    text-align:center;
+    font-style: oblique;
+    font-weight: bold;
+    color:red;
+}
+.title_2{
     margin:0 auto;
     margin-bottom: 20px;
     text-align:center;
@@ -63,17 +75,30 @@ body{
 </style>
 </head>
 <body>
-<h1 class="title_1">湖南绿茵环保科技开业大酬宾</h1>
-<div class="content">
+<h1 class="title_1" id="title_1">湖南绿茵环保科技开业大酬宾</h1>
+<h1 class="title_2" id="title_2" style="display: none">恭喜！恭喜！中奖啦，请填写您的信息</h1>
+<div class="prompt" style="display: none" id="form_good">
+    <form action="#">
+        姓名:<br>
+        <input type="text" id="user">
+        <br>
+        手机号:<br>
+        <input type="text" id="phone">
+        <br><br>
+        <button  style="font-size:2em; width: 100%;height: 100%;background-color: red" type="submit" onclick="my_good()">提交</button>
+    </form>
+</div>
+<div class="content" id="content">
 
 </div>
-<div class="button">
+<div class="button" id="b_choujiang">
     <button type="button" class="choujiang">抽奖</button>
 </div>
 <div class="rank">
 <table border="1">
     <span>任远:15201692468;唐英奇:1523312311;<br>刘辉:13323122222;刘辉:13323122222</span>
 </table>
+
 </div>
 <script>
 //请在此段代码前引用jq,否则代码无效
@@ -98,6 +123,12 @@ $(document).ready(function() {
         time(1, rand, times, sum, times) //点击按钮后触发time事件
     })
 });
+
+
+function my_good()
+{
+  alert("3");
+}
 
 function time(shu, sums, tie, sum, tis) { //倒计时
     var tie = tie + tis //滚动速度
@@ -128,10 +159,18 @@ function time(shu, sums, tie, sum, tis) { //倒计时
                 dataType:'json',
                 crossDomain: true,    //一定要加
                 success:function(result){
-                    console.log(result);
+                    if(result.code){//button_choujiang
+                        $("#form_good").css('display','block');
+                        $("#content").css('display','none');
+                        $("#b_choujiang").css('display','none');
+                        $("#title_2").css('display','block');
+                        $("#title_1").css('display','none');
+                    }
+
+
                 },
                 error:function(result){
-                    console.log(result);
+                    alert("2");
                 }
 
             });
