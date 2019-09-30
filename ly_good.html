@@ -127,7 +127,7 @@ $(document).ready(function() {
 
 function my_good()
 {
-  alert("3");
+  //alert("3");
 }
 
 function time(shu, sums, tie, sum, tis) { //倒计时
@@ -154,21 +154,22 @@ function time(shu, sums, tie, sum, tis) { //倒计时
          //   alert(sums);
             $.ajax({
                 type:"POST", //请求方式
-                url:"http://lv.cn/index.php", //请求的url地址
+                url:"http://120.25.79.227/index.php", //请求的url地址
                 data:{"id":sums}, //参数值
                 dataType:'json',
                 crossDomain: true,    //一定要加
                 success:function(result){
-                    if(result.code){//button_choujiang
+                    if(result.code == 200){//button_choujiang
                         $("#form_good").css('display','block');
                         $("#content").css('display','none');
                         $("#b_choujiang").css('display','none');
                         $("#title_2").css('display','block');
                         $("#title_1").css('display','none');
+                    }else{
+                        window.prompt("sometext","defaultText");
                     }
 
-
-                },
+                 },
                 error:function(result){
                     alert("2");
                 }
