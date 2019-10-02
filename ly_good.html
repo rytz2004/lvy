@@ -10,7 +10,7 @@ body{
     background-color: #F0F8FF;
 }
 .prompt{
-    margin:0 auto;border:1px solid #000;width:300px;height:100px;margin-bottom: 60px;
+    margin:0 auto;border:1px solid #000;width:500px;height:300px;margin-bottom: 60px;font-weight: bold;font-size: large;
 }
 
 .title_1{
@@ -80,10 +80,10 @@ body{
 <div class="prompt" style="display: none" id="form_good">
     <form action="#">
         姓名:<br>
-        <input type="text" id="user">
+        <input type="text" style="width: 499px;height: 50px" id="user">
         <br>
         手机号:<br>
-        <input type="text" id="phone">
+        <input type="text" style="width: 499px;height: 50px" id="phone">
         <br><br>
         <button  style="font-size:2em; width: 100%;height: 100%;background-color: red" type="submit" onclick="my_good()">提交</button>
     </form>
@@ -96,6 +96,7 @@ body{
 </div>
 <div class="rank">
 <table border="1">
+    <span>中奖名单<span><br>
     <span>任远:15201692468;唐英奇:1523312311;<br>刘辉:13323122222;刘辉:13323122222</span>
 </table>
 
@@ -151,7 +152,7 @@ function time(shu, sums, tie, sum, tis) { //倒计时
             text(shu, sums, tie, sum, tis)
         } else {
             $('.choujiang').attr("disabled", false); //抽奖完毕,按钮重新进入可编辑状态
-         //   alert(sums);
+           // alert(sums);
             $.ajax({
                 type:"POST", //请求方式
                 url:"http://120.25.79.227/index.php", //请求的url地址
@@ -163,7 +164,9 @@ function time(shu, sums, tie, sum, tis) { //倒计时
                         $("#form_good").css('display','block');
                         $("#content").css('display','none');
                         $("#b_choujiang").css('display','none');
+                       // $("#title_2").textContent('恭喜！恭喜！中奖啦，请填写您的信息1');
                         $("#title_2").css('display','block');
+                        $("#title_2").text('恭喜！恭喜！'+result['msg_bak']+',请填写您的信息');
                         $("#title_1").css('display','none');
                     }else{
                         window.prompt("sometext","defaultText");
