@@ -37,7 +37,7 @@ body{
     font-size: 20px;
 }
 .rank {
-    width:456px;
+    width:500px;
     margin:0 auto;
     margin-top: 40px;
     text-align:center;
@@ -97,9 +97,16 @@ body{
 <div class="rank">
 <table border="1">
     <span>中奖名单<span><br>
-    <span>任远:15201692468;唐英奇:1523312311;<br>刘辉:13323122222;刘辉:13323122222</span>
-</table>
+    <pre id="span_1" style="color: red"></pre>
+    <pre id="span_2" style="color: red"></pre>
+    <pre id="span_3" style="color: red"></pre>
+    <pre id="span_4" style="color: red"></pre>
+    <pre id="span_5" style="color: red"></pre>
+    <pre id="span_6" style="color: red"></pre>
+    <pre id="span_7" style="color: red"></pre>
+    <pre id="span_8" style="color: red"></pre>
 
+</table>
 </div>
 <script>
 //请在此段代码前引用jq,否则代码无效
@@ -123,6 +130,15 @@ $(document).ready(function() {
         }
         time(1, rand, times, sum, times) //点击按钮后触发time事件
     })
+    $("#span_1").text("免费治理 任远：15201692468");
+    $("#span_2").text("免费检测 任远：15201692468 任远：15201692468\n任远：15201692468 任远：15201692468");
+    $("#span_3").text("特惠检测 任远：15201692468");
+    $("#span_4").text("特惠治理 任远：15201692468");
+    $("#span_5").text("空气清新剂1瓶 任远：15201692468");
+    $("#span_6").text("活性炭包 任远：15201692468");
+    $("#span_7").text("500元治理抵扣 任远：15201692468");
+    $("#span_8").text("800元治理抵扣 任远：15201692468");
+
 });
 
 
@@ -155,7 +171,7 @@ function time(shu, sums, tie, sum, tis) { //倒计时
            // alert(sums);
             $.ajax({
                 type:"POST", //请求方式
-                url:"http://120.25.79.227/index.php", //请求的url地址
+                url:"http://ly.com/index.php", //请求的url地址
                 data:{"id":sums}, //参数值
                 dataType:'json',
                 crossDomain: true,    //一定要加
