@@ -10,10 +10,11 @@ mysqli_query($connect,$sql);
 // 选择数据表
 
 //查询单条数据并以json的格式输出
-$sql = "select * from cetsix where word='" .$word."'";
+$sql = "select * from lv_award where id desc";
 // 执行sql语句返回结果集
 $result = mysqli_query($connect,$sql);
-$row = mysqli_fetch_row($result);
+$row = @mysqli_fetch_row($result);
+print_r($row);die;
 echo  json_encode($row);
 
 
