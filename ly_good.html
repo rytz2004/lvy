@@ -130,15 +130,136 @@ $(document).ready(function() {
             rand = rand + sum
         }
         time(1, rand, times, sum, times) //点击按钮后触发time事件
-    })
-    $("#span_1").text("免费治理 任远：15201692468");
-    $("#span_2").text("免费检测 任远：15201692468 任远：15201692468\n任远：15201692468 任远：15201692468");
-    $("#span_3").text("特惠检测 任远：15201692468");
-    $("#span_4").text("特惠治理 任远：15201692468");
-    $("#span_5").text("空气清新剂1瓶 任远：15201692468");
-    $("#span_6").text("活性炭包 任远：15201692468");
-    $("#span_7").text("500元治理抵扣 任远：15201692468");
-    $("#span_8").text("800元治理抵扣 任远：15201692468");
+    });
+
+    $.ajax({
+        type:"GET", //请求方式
+        url:"http://ly.com/initial.php", //请求的url地址
+        data:{"good":1}, //参数值
+        dataType:'json',
+
+        success:function(result){
+            if(result.code == 200){//button_choujiang
+                var str_info_2 = '';
+                var str_info_3 = '';
+                var str_info_4 = '';
+                var str_info_5 = '';
+                var str_info_6 = '';
+                var str_info_7 = '';
+                var str_info_8 = '';
+
+                if(result.info_2 != ''){
+                    var arr = []
+
+                    for (let i in result.info_2) {
+                        arr.push(result.info_2[i]); //
+
+                    }
+                    for(var i =0 ;i<arr.length;i++){
+                        var str  = arr[i].toString();
+                        var str1 =  str.replace(",",":")
+                        str_info_2+=str1+" ";
+                    }
+                }
+
+                if(result.info_3 != ''){
+                    var arr = []
+
+                    for (let i in result.info_3) {
+                        arr.push(result.info_3[i]); //
+
+                    }
+                    for(var i =0 ;i<arr.length;i++){
+                        var str  = arr[i].toString();
+                        var str1 =  str.replace(",",":")
+                        str_info_3+=str1+" ";
+                    }
+                }
+
+                if(result.info_4 != ''){
+                    var arr = []
+
+                    for (let i in result.info_4) {
+                        arr.push(result.info_4[i]); //
+
+                    }
+                    for(var i =0 ;i<arr.length;i++){
+                        var str  = arr[i].toString();
+                        var str1 =  str.replace(",",":")
+                        str_info_4+=str1+" ";
+                    }
+                }
+
+                if(result.info_5 != ''){
+                    var arr = []
+
+                    for (let i in result.info_5) {
+                        arr.push(result.info_5[i]); //
+
+                    }
+                    for(var i =0 ;i<arr.length;i++){
+                        var str  = arr[i].toString();
+                        var str1 =  str.replace(",",":")
+                        str_info_5+=str1+" ";
+                    }
+                }
+                if(result.info_6 != ''){
+                    var arr = []
+
+                    for (let i in result.info_6) {
+                        arr.push(result.info_6[i]); //
+
+                    }
+                    for(var i =0 ;i<arr.length;i++){
+                        var str  = arr[i].toString();
+                        var str1 =  str.replace(",",":")
+                        str_info_6+=str1+" ";
+                    }
+                }
+                if(result.info_7 != ''){
+                    var arr = []
+
+                    for (let i in result.info_7) {
+                        arr.push(result.info_7[i]); //
+
+                    }
+                    for(var i =0 ;i<arr.length;i++){
+                        var str  = arr[i].toString();
+                        var str1 =  str.replace(",",":")
+                        str_info_7+=str1+" ";
+                    }
+                }
+                if(result.info_8 != ''){
+                    var arr = []
+
+                    for (let i in result.info_8) {
+                        arr.push(result.info_8[i]); //
+
+                    }
+                    for(var i =0 ;i<arr.length;i++){
+                        var str  = arr[i].toString();
+                        var str1 =  str.replace(",",":")
+                        str_info_8+=str1+" ";
+                    }
+                }
+                $("#span_1").text("免费治理 【任远：15201692468】");
+                $("#span_2").text("免费检测【 " + str_info_2 + "】");
+                $("#span_3").text("特惠检测【" + str_info_3+ "】");
+                $("#span_4").text("特惠治理【 " + str_info_4+ "】");
+                $("#span_5").text("空气清新剂1瓶【 " + str_info_5+ "】");
+                $("#span_6").text("活性炭包【 "+ str_info_6+ "】");
+                $("#span_7").text("500元治理抵扣【 "+ str_info_7+ "】");
+                $("#span_8").text("800元治理抵扣【 "+ str_info_8+ "】");
+             }
+
+        },
+        error:function(){
+           // alert("提交失败");window.location.reload();
+        }
+
+    });
+
+
 
 });
 
@@ -152,19 +273,21 @@ function my_good()
     $.ajax({
         type:"POST", //请求方式
         url:"http://ly.com/ins.php", //请求的url地址
-        data:{"good":1}, //参数值
+        data:{"good":good,"user":user,"phone":phone}, //参数值
         dataType:'json',
 
         success:function(result){
             if(result.code == 200){//button_choujiang
-                alert("1")
+                alert("提交成功")
+                window.location.reload();
             }else{
-                alert("2")
+                alert(result.msg)
+               // window.location.reload();
             }
 
         },
         error:function(){
-            alert("失败");
+            alert("提交失败");window.location.reload();
         }
 
     });
